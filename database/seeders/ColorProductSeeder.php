@@ -23,10 +23,10 @@ class ColorProductSeeder extends Seeder
 
         foreach ($products as $product) {
             $product->colors()->attach([
-                1 => ['quantity' => 10],
-                2 => ['quantity' => 10],
-                3 => ['quantity' => 10],
-                4 => ['quantity' => 10]
+                1 => ['quantity' => fake()->numberBetween(0, 7), 'created_at' => now(), 'updated_at' => now()],
+                2 => ['quantity' => fake()->numberBetween(0, 7), 'created_at' => now(), 'updated_at' => now()],
+                3 => ['quantity' => fake()->numberBetween(0, 7), 'created_at' => now(), 'updated_at' => now()],
+                4 => ['quantity' => fake()->numberBetween(0, 7), 'created_at' => now(), 'updated_at' => now()]
             ]);
         }
     }

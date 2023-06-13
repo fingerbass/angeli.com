@@ -20,22 +20,16 @@ class SubcategorySeeder extends Seeder
                 'category_id' => 1,
                 'name' => 'Jeans Pitillo',
                 'slug' => Str::slug('Jeans Pitillo'),
-                'color' => true,
-                'size' => true
             ],
             [
                 'category_id' => 1,
                 'name' => 'Jeans Clásicos',
                 'slug' => Str::slug('Jeans Clásicos'),
-                'color' => true,
-                'size' => true
             ],
             [
                 'category_id' => 1,
                 'name' => 'Sketchers',
                 'slug' => Str::slug('Sketchers'),
-                'color' => true,
-                'size' => true
             ],
             // Categoría: Pijamas
             [

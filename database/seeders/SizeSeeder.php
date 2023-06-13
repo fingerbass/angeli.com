@@ -15,7 +15,7 @@ class SizeSeeder extends Seeder
     public function run(): void
     {
         $products = Product::whereHas('subcategory', function (Builder $query) {
-            $query->where('color', true)
+            $query->where('color', false)
                 ->where('size', true);
         })->get();
 

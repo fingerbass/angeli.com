@@ -11,7 +11,7 @@ class Product extends Model
 
     const BORRADOR = 1;
     const PUBLICADO = 2;
-    
+
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
     // Relación 1:*
@@ -34,12 +34,18 @@ class Product extends Model
     // Relación *:*
     public function colors()
     {
-        return $this->belongsToMany(Color::class);
+        return $this->belongsToMany(Color::class)->withPivot('quantity');
     }
 
     // Relación 1:* polimórfica
     public function images()
     {
         return $this->morphMany(Image::class, 'imageable');
+    }
+
+    // URLs amigables
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }

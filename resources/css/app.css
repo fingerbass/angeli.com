@@ -1,5 +1,6 @@
 @import 'container.css';
 @import 'nav.css';
+@import "forms.css";
 
 @tailwind base;
 @tailwind components;

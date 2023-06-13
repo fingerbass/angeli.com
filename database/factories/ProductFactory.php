@@ -27,7 +27,7 @@ class ProductFactory extends Factory
 
         $brand = $category->brands->random();
 
-        $quantity = $subcategory->color ? null : random_int(12, 33);
+        $quantity = $subcategory->color ? null : random_int(2, 7);
 
         return [
             'name' => $name,

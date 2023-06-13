@@ -7,12 +7,13 @@
                     <li class="bg-white rounded-lg shadow {{ $loop->last ? '':'sm:mr-4' }}">
                         <article>
                             <figure>
-                                <img class="h-60 w-full object-cover object-center" src="{{Storage::url($product->images->first()->url)}}" alt="">
+                                <img class="h-60 w-full object-cover object-center"
+                                     src="{{Storage::url($product->images->first()->url)}}" alt="">
                             </figure>
 
                             <div class="py-4 px-6">
                                 <h1 class="text-lg font-semibold">
-                                    <a href="">
+                                    <a href="{{ route('products.show',$product) }}">
                                         {{Str::limit($product->name,20)}}
                                     </a>
                                 </h1>
@@ -31,7 +32,8 @@
         </div>
     @else
         <div class="mb-4 h-48 flex justify-center items-center bg-white shadow-xl border border-gray-100 rounded-lg">
-            <div class="rounded-full animate-spin ease-out duration-500 w-10 h-10 border-y-2 border-dotted border-gray-600"></div>
+            <div
+                class="rounded-full animate-spin ease-out duration-500 w-10 h-10 border-y-2 border-dotted border-gray-600"></div>
         </div>
     @endif
 </div>

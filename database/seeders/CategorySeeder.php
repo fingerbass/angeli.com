@@ -44,7 +44,9 @@ class CategorySeeder extends Seeder
             $brands = Brand::factory(4)->create();
 
             foreach ($brands as $brand) {
-                $brand->categories()->attach($category->id);
+                $brand->categories()->attach([
+                    $category->id => ['category_id' => $category->id, 'created_at' => now(), 'updated_at' => now()]
+                ]);
             }
         }
     }
