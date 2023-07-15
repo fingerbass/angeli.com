@@ -3,38 +3,70 @@
 namespace App\Http\Livewire;
 
 use App\Models\Size;
+use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 
 class AddCartItemSize extends Component
 {
-
     public $product, $sizes;
     public $qty = 1;
     public $quantity = 0;
     public $size_id = '';
     public $color_id = '';
-
     public $colors = [];
-    public $viewStock = false;
+    public $options = [];
+
+    public function mount()
+    {
+        $this->sizes = $this->product->sizes;
+        $this->options['image'] = Storage::url($this->product->images->first()->url);
+    }
 
     public function updatedSizeId($value)
     {
         $size = Size::find($value);
         $this->colors = $size->colors;
         $this->color_id = '';
-        $this->viewStock = false;
+        $this->options['size'] = $size->name;
     }
 
     public function updatedColorId($value)
     {
         $size = Size::find($this->size_id);
-        $this->quantity = $size->colors->find($value)->pivot->quantity;
-        $this->viewStock = true;
+        $color = $size->colors->find($value);
+        $this->quantity = qty_available($this->product->id, $color->id, $size->id);
+        $this->options['color'] = $color->name;
+
+        $this->options['size_id'] = $size->id;
+        $this->options['color_id'] = $color->id;
     }
 
-    public function mount()
+    public function decrement()
     {
-        $this->sizes = $this->product->sizes;
+        --$this->qty;
+    }
+
+    public function increment()
+    {
+        ++$this->qty;
+    }
+
+    public function addItem()
+    {
+        Cart::add(['id' => $this->product->id,
+            'name' => $this->product->name,
+            'qty' => $this->qty,
+            'price' => $this->product->price,
+            'weight' => 550,
+            'options' => $this->options
+        ]);
+
+        $this->quantity = qty_available($this->product->id, $this->options['color_id'], $this->options['size_id']);
+
+        $this->reset('qty');
+
+        $this->emitTo('dropdown-cart', 'render');
     }
 
     public function render()

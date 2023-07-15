@@ -12,12 +12,12 @@
 @endphp
 
 <svg height="{{$size}}" width="{{$size}}" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg"
-     xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" fill="#666666"
+     xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" fill="{{ $col }}"
      stroke="#666666"><g id="SVGRepo_bgCarrier" stroke-width="0"></g>
     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
     <g id="SVGRepo_iconCarrier">
         <style type="text/css"> .st0 {
-                fill: {{$col}};
+                fill: "{{ $col }}";
             } </style>
         <g>
             <path class="st0"

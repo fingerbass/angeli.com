@@ -21,13 +21,16 @@
         </select>
     </div>
 
-    @if($viewStock)
-        <p class="text-gray-700 my-4">
-            <span class="font-semibold text-lg">Stock disponible:</span> {{ $quantity }}
-        </p>
-    @endif
+    <p class="text-gray-700 my-4">
+        <span class="font-semibold text-lg">Stock disponible:</span>
+        @if($quantity)
+            {{ $quantity }}
+        @else
+            {{ $product->stock }}
+        @endif
+    </p>
 
-    <div class="flex mt-4">
+    <div class="flex">
         <div class="mr-4">
             <x-secondary-button
                 disabled
@@ -37,7 +40,9 @@
                 wire:click="decrement">
                 -
             </x-secondary-button>
+
             <span class="mx-2 text-gray-700">{{$qty}}</span>
+
             <x-secondary-button
                 x-bind:disabled="$wire.qty >= $wire.quantity"
                 wire:loading.attr="disabled"
@@ -50,7 +55,10 @@
             <x-button-customized
                 x-bind:disabled="!$wire.quantity"
                 color="orange"
-                class="w-full">
+                class="w-full justify-center"
+                wire:click="addItem"
+                wire:loading.attr="disabled"
+                wire:target="addItem">
                 Agregar al carrito
             </x-button-customized>
         </div>
